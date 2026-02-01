@@ -1,17 +1,15 @@
 import { Component } from '@angular/core';
 import { bootstrapApplication } from '@angular/platform-browser';
+import { Registration } from './app/registration/registration';
 
 @Component({
   selector: 'app-root',
+  imports: [Registration],
   template: `
-    <h1>Hello from {{ name }}!</h1>
-    <a target="_blank" href="https://angular.dev/overview">
-      Learn more about Angular
-    </a>
+    <app-registration />
   `,
 })
 export class App {
-  name = 'Angular';
 }
 
 bootstrapApplication(App);

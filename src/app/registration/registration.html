@@ -1,0 +1,72 @@
+<form (submit)="onSubmit($event)">
+  <div>
+    <label>Email</label>
+    <input type="email" [formField]="registrationForm.email" />
+
+    @if (
+      registrationForm.email().invalid() && registrationForm.email().touched()
+    ) {
+      <p class="error">
+        {{ registrationForm.email().errors()[0].message }}
+      </p>
+    }
+  </div>
+
+  <div>
+    <label>Password</label>
+    <input type="password" [formField]="registrationForm.password" />
+
+    @if (
+      registrationForm.password().invalid() &&
+      registrationForm.password().touched()
+    ) {
+      <p class="error">
+        {{ registrationForm.password().errors()[0].message }}
+      </p>
+    }
+  </div>
+
+  <div>
+    <label>Confirm Password</label>
+    <input type="password" [formField]="registrationForm.confirmPassword" />
+
+    @if (
+      registrationForm.confirmPassword().invalid() &&
+      registrationForm.confirmPassword().touched()
+    ) {
+      <p class="error">
+        {{ registrationForm.confirmPassword().errors()[0].message }}
+      </p>
+    }
+  </div>
+
+  <div>
+    <label>
+      <input type="checkbox" [formField]="registrationForm.acceptedTerms" />
+      I accept the terms and conditions
+    </label>
+
+    @if (
+      registrationForm.acceptedTerms().invalid() &&
+      registrationForm.acceptedTerms().touched()
+    ) {
+      <p class="error">
+        {{ registrationForm.acceptedTerms().errors()[0].message }}
+      </p>
+    }
+  </div>
+
+  <div>
+    @if (registrationForm().errors().length > 0) {
+      <div class="error">
+        @for (error of registrationForm().errors(); track error.message) {
+          <p>{{ error.kind }}</p>
+        }
+      </div>
+    }
+  </div>
+
+  <button type="submit" [disabled]="registrationForm().invalid()">
+    Register
+  </button>
+</form>
